@@ -3,7 +3,7 @@ const morgan = require("morgan");
 require("dotenv").config();
 
 const router = express.Router();
-const userControllers = require("../controllers/usercontrollers");
+const userControllers = require("../controllers/usercontroller");
 const auth = require("../middleware/auth");
 
 // All routes are protected

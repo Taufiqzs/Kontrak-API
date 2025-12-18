@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const authController = require("../controllers/authcontrollers");
+const authController = require("../controllers/authcontroller");
 
 // alamat_route   POST /api/auth/registration
 // deskripsi    Register a new user

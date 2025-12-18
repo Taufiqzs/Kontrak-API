@@ -8,21 +8,21 @@ router.use(auth);
 //  lokasi_route GET /api/transaction/balance
 //  deskripsi Get account balance
 //  akses Private
-router.get("/balance", transactionscontrollers.getBalance);
+router.get("/balance", auth, transactionscontrollers.getBalance);
 
 // lokasi_route   POST /api/transaction/topup
 // deskripsi Top up balance
 // akses  Private
-router.post("/topup", transactionscontrollers.topup);
+router.post("/topup", auth, transactionscontrollers.topup);
 
 // lokasi_route   POST /api/transaction/transaction
 // deskripsi    Make a transaction
 // akses  Private
-router.post("/transaction", transactionscontrollers.makeTransaction);
+router.post("/transaction", auth, transactionscontrollers.makeTransaction);
 
 // lokasi_route   GET /api/transaction/history
 // deskripsi    Get transaction history
 // akses  Private
-router.get("/history", transactionscontrollers.getTransactionHistory);
+router.get("/history", auth, transactionscontrollers.getTransactionHistory);
 
 module.exports = router;

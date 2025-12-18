@@ -1,0 +1,24 @@
+bank-api/
+├── package.json
+├── server.js
+├── .env
+├── .gitignore
+├── uploads/          (for profile images)
+├── middleware/
+│   └── auth.js
+├── models/
+│   └── User.js
+│   └── Transaction.js
+├── controllers/
+│   ├── authController.js
+│   ├── userController.js
+│   ├── infoController.js
+│   └── transactionController.js
+├── routes/
+│   ├── authRoutes.js
+│   ├── userRoutes.js
+│   ├── infoRoutes.js
+│   └── transactionRoutes.js
+└── data/
+    ├── banners.json
+    └── services.json

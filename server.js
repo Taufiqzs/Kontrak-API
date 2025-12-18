@@ -1,6 +1,6 @@
 // Import routes
 const authRoutes = require("./routes/authroutes");
-const userRoutes = require("./routes/userroutes");
+const userRoutes = require("./routes/useroutes");
 const infoRoutes = require("./routes/inforoutes");
 const transactionRoutes = require("./routes/transactionroutes");
 

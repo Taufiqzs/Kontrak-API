@@ -1,4 +1,4 @@
-const User = require("../models/User.js");
+const User = require("../models");
 const multir = require("multir");
 const path = require("path");
 const fs = require("fs");

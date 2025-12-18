@@ -1,10 +1,3 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
-const helmet = require("helmet");
-const morgan = require("morgan");
-require("dotenv").config();
-
 // Import routes
 const authRoutes = require("./routes/authroutes");
 const userRoutes = require("./routes/userroutes");

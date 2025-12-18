@@ -2,17 +2,10 @@ const { User, Transaction, Sequelize } = require("../models");
 
 exports.getBalance = async (req, res) => {
   //Parameterized query by primary key
-  try {
-    const user = await User.findByPk(req.user.id, {
-      attributes: ["balance", "accountNumber", "firstname", "lastname"],
-    });
-    if (!user) {
-      return res.status(404).json({ error: "User not found" });
-    }
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Failed to get balance" });
-  }
+
+  const user = await User.findByPk(req.user.id, {
+    attributes: ["balance", "accountNumber", "firstname", "lastname"],
+  });
 };
 
 exports.topup = async (req, res) => {
@@ -140,8 +133,8 @@ exports.makeTransaction = async (req, res) => {
 };
 
 module.exports = {
-  getBalance,
   topup,
   makeTransaction,
   getTransactionHistory,
+  getBalance,
 };

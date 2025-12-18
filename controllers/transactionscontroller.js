@@ -75,3 +75,10 @@ exports.getTransactionHistory = async (req, res) => {
     offset: offset,
   });
 };
+
+module.exports = {
+  getBalance,
+  topup,
+  makeTransaction,
+  getTransactionHistory,
+};

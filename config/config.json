@@ -2,7 +2,7 @@
   "development": {
     "username": "postgres",
     "password": "postgres",
-    "database": "bank_db_dev",
+    "database": "kontrak_db_dev",
     "host": "localhost",
     "dialect": "postgres",
     "port": 58307
@@ -10,7 +10,7 @@
   "test": {
     "username": "postgres",
     "password": "postgres",
-    "database": "bank_db_test",
+    "database": "kontrak_db_test",
     "host": "localhost",
     "dialect": "postgres",
     "port": 58307

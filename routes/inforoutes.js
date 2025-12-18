@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const infoController = require("../controllers/infocontrollers");
+const infoController = require("../controllers/infocontroller");
 
 // alamat_route   GET /api/info/banner
 // deskripsi    Get banners

@@ -2,9 +2,17 @@ const { User, Transaction, Sequelize } = require("../models");
 
 exports.getBalance = async (req, res) => {
   //Parameterized query by primary key
-  const user = await User.findByPk(req.user.id, {
-    attributes: ["balance", "accountNumber", "firstname", "lastname"],
-  });
+  try {
+    const user = await User.findByPk(req.user.id, {
+      attributes: ["balance", "accountNumber", "firstname", "lastname"],
+    });
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Failed to get balance" });
+  }
 };
 
 exports.topup = async (req, res) => {
@@ -68,12 +76,67 @@ exports.getTransactionHistory = async (req, res) => {
   }
 
   // findAll with parameterized conditions
-  const transactions = await Transaction.findAll({
+  const transaction = await Transaction.findAll({
     where: where,
     order: [["createdAt", "DESC"]],
     limit: parseInt(limit),
     offset: offset,
   });
+};
+
+exports.makeTransaction = async (req, res) => {
+  try {
+    const { type, amount, recipientAccount, recipientName, description = "Transaction" } = req.body;
+
+    if (!["TRANSFER", "PAYMENT"].includes(type)) {
+      return res.status(400).json({ error: "Invalid transaction type" });
+    }
+
+    if (!amount || amount <= 0) {
+      return res.status(400).json({ error: "Invalid amount" });
+    }
+
+    const user = await User.findByPk(req.user.id);
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    if (parseFloat(user.balance) < parseFloat(amount)) {
+      return res.status(400).json({ error: "Insufficient balance" });
+    }
+
+    const balanceBefore = parseFloat(user.balance);
+    const amountNum = parseFloat(amount);
+
+    user.balance = balanceBefore - amountNum;
+    await user.save();
+
+    const transaction = await Transaction.create({
+      userId: user.id,
+      type,
+      amount: amountNum,
+      description,
+      recipientAccount,
+      recipientName,
+      balanceBefore,
+      balanceAfter: user.balance,
+    });
+
+    res.json({
+      success: true,
+      message: "Transaction successful",
+      transactionId: transaction.transactionId,
+      amount: amountNum,
+      newBalance: user.balance,
+      recipientAccount,
+      recipientName,
+      timestamp: transaction.createdAt,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Transaction failed" });
+  }
 };
 
 module.exports = {

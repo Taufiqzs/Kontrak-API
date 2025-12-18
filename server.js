@@ -20,7 +20,6 @@ app.use("/uploads", express.static("uploads"));
 // Remove: const mongoose = require('mongoose');
 const { sequelize } = require("./models"); // We'll create this
 
-// Replace the entire mongoose.connect block with:
 sequelize
   .authenticate()
   .then(() => console.log("PostgreSQL connected via Sequelize"))

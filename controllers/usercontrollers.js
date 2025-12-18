@@ -1,5 +1,5 @@
 const User = require("../models");
-const multir = require("multir");
+const multir = require("multer");
 const path = require("path");
 const fs = require("fs");
 

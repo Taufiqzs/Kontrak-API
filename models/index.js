@@ -9,7 +9,6 @@ const env = process.env.NODE_ENV || "development";
 const config = require(__dirname + "/../config/config.json")[env];
 const db = {};
 // Import models
-const User = require("./User")(sequelize, Sequelize.DataTypes);
 const Transaction = require("./Transaction")(sequelize, Sequelize.DataTypes);
 
 let sequelize;

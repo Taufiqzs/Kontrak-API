@@ -8,9 +8,6 @@ const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || "development";
 const config = require(__dirname + "/../config/config.json")[env];
 const db = {};
-// Import models
-const User = require("../models/User")(sequelize, Sequelize.DataTypes);
-const Transaction = require("../models/Transaction")(sequelize, Sequelize.DataTypes);
 
 let sequelize;
 if (config.use_env_variable) {
@@ -18,15 +15,6 @@ if (config.use_env_variable) {
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
-// Set up associations
-User.hasMany(Transaction, { foreignKey: "userId" });
-Transaction.belongsTo(User, { foreignKey: "userId" });
-
-module.exports = {
-  sequelize,
-  User,
-  Transaction,
-};
 
 fs.readdirSync(__dirname)
   .filter((file) => {

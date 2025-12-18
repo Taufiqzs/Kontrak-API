@@ -5,7 +5,7 @@
     "database": "kontrak_db_dev",
     "host": "localhost",
     "dialect": "postgres",
-    "port": 58307
+    "port": 5432
   },
   "test": {
     "username": "postgres",
@@ -13,7 +13,7 @@
     "database": "kontrak_db_test",
     "host": "localhost",
     "dialect": "postgres",
-    "port": 58307
+    "port": 5432
   },
   "production": {
     "use_env_variable": "DATABASE_URL",

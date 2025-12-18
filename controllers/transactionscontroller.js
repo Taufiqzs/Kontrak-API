@@ -131,10 +131,3 @@ exports.makeTransaction = async (req, res) => {
     res.status(500).json({ error: "Transaction failed" });
   }
 };
-
-module.exports = {
-  topup,
-  makeTransaction,
-  getTransactionHistory,
-  getBalance,
-};

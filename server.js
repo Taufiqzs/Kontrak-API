@@ -1,5 +1,5 @@
 const express = require("express");
-const { sequelize } = require("./models");
+
 const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
